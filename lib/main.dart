@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:product_store/property_data.dart';
+import 'package:product_store/screens/property_screen.dart';
 
 import './screens/home_screen.dart';
 
@@ -91,7 +93,7 @@ class MyApp extends StatelessWidget
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF00FF9C),
-            foregroundColor: Color(0xFF202020), // Dark gray text on buttons
+            foregroundColor: Color.fromARGB(255, 12, 12, 12),// Dark gray text on buttons
           ),
         ),
         
@@ -105,7 +107,7 @@ class MyApp extends StatelessWidget
         
         fontFamily: "Lato",
       ),
-      home: HomeScreen(),
+      home: PropertyScreen(property: properties[2]),
       debugShowCheckedModeBanner: false,
     );
   }
