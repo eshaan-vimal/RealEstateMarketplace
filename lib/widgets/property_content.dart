@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:product_store/property_data.dart';
+import 'package:provider/provider.dart';
+// import 'package:product_store/property_data.dart';
 
+import 'package:product_store/providers/property_provider.dart';
 import './property_card.dart';
 import '../screens/property_screen.dart';
 
@@ -15,8 +17,9 @@ class PropertyContent extends StatefulWidget
 
 class _PropertyContentState extends State<PropertyContent> 
 {
+  late List<Map<String,dynamic>> properties;
   final List<String> filters = ['All', 'Villa', '3BHK', '2BHK', '1BHK'];
-  late String selectedFilter;
+  late String selectedFilter = filters[0];
   late List<Map<String,dynamic>> filteredProperties;
 
 
@@ -24,8 +27,6 @@ class _PropertyContentState extends State<PropertyContent>
   void initState() 
   {
     super.initState();
-    selectedFilter = filters[0];
-    filteredProperties = properties;
   }
 
   @override
@@ -36,7 +37,12 @@ class _PropertyContentState extends State<PropertyContent>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) 
+  {
+    properties = context.watch<PropertyProvider>().properties;
+    filteredProperties = context.watch<PropertyProvider>().filteredProperties;
+    // filteredProperties = properties;
+
     return SafeArea(
       child: Column(
         children: [
@@ -87,8 +93,7 @@ class _PropertyContentState extends State<PropertyContent>
                     onTap: () {
                       setState(() {
                         selectedFilter = filters[index];
-                        filteredProperties = selectedFilter == "All" ?
-                          properties : properties.where((property) => property['type'] == selectedFilter).toList();
+                        context.read<PropertyProvider>().filterProperty(selectedFilter);
                       });
                     },
                     child: Chip(
@@ -115,7 +120,16 @@ class _PropertyContentState extends State<PropertyContent>
           SizedBox(height: 10,),
       
           Expanded(
-            child: ListView.builder(
+            child: filteredProperties.isEmpty?
+            Center(
+              child: Text(
+                "No listings available.",
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 22,
+                ),
+              ),
+            ) :
+            ListView.builder(
               itemCount: filteredProperties.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
@@ -125,6 +139,8 @@ class _PropertyContentState extends State<PropertyContent>
                         builder: (context) => PropertyScreen(property: filteredProperties[index]),
                       ),
                     );
+                    setState(() {
+                    });
                   },
                   child: PropertyCard(
                     image: filteredProperties[index]['image'],

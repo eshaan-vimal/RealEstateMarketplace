@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:product_store/providers/property_provider.dart';
+import 'package:provider/provider.dart';
+
+
 class PropertyScreen extends StatefulWidget 
 {
   final Map<String, dynamic> property;
@@ -231,10 +235,27 @@ class _PropertyScreenState extends State<PropertyScreen> {
                 ),
                 SizedBox(height: 16),
                 SizedBox(
-                  width: 200,
+                  width: 170,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<PropertyProvider>().buyProperty(widget.property);
+
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Color.fromARGB(234, 20, 20, 20),
+                        content: Center(
+                          child: Text(
+                            "Purchase Sucessful!",
+                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ));
+
+                      Navigator.of(context).pop();
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),

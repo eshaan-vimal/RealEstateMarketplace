@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:product_store/property_data.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/property_provider.dart';
 
 
 class PortfolioContent extends StatefulWidget 
@@ -12,9 +14,12 @@ class PortfolioContent extends StatefulWidget
 
 class _PortfolioContentState extends State<PortfolioContent> 
 {
+  
   @override
   Widget build(BuildContext context) 
   {
+    final List<Map<String,dynamic>> portfolio = context.watch<PropertyProvider>().portfolio;
+
     return SafeArea(
       child: Column(
         children: [
@@ -29,25 +34,34 @@ class _PortfolioContentState extends State<PortfolioContent>
           SizedBox(height: 16,),
 
           Expanded(
-            child: ListView.builder(
-              itemCount: cart.length,
+            child: portfolio.isEmpty?
+            Center(
+              child: Text(
+                "No assets acquired.",
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontSize: 22,
+                ),
+              ),
+            ) :
+            ListView.builder(
+              itemCount: portfolio.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: EdgeInsets.all(14.0),
 
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(
-                      cart[index]['image'],
+                      portfolio[index]['image'],
                     ),
                     radius: 32,
                   ),
 
                   title: Text(
-                    cart[index]['location'],
+                    portfolio[index]['location'],
                   ),
 
                   subtitle: Text(
-                    "${cart[index]['area']} sq ft.  ${cart[index]['type']}",
+                    "${portfolio[index]['area']} sq ft.  ${portfolio[index]['type']}",
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -55,7 +69,22 @@ class _PortfolioContentState extends State<PortfolioContent>
                   ),
 
                   trailing: ElevatedButton(
-                    onPressed: () {}, 
+                    onPressed: () {
+                      context.read<PropertyProvider>().sellProperty(portfolio[index]);
+
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Color.fromARGB(234, 20, 20, 20),
+                        content: Center(
+                          child: Text(
+                            "Sale Successful!",
+                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ));
+                    }, 
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(Colors.red),
                     ),

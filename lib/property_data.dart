@@ -1,4 +1,4 @@
-const List<Map<String, dynamic>> properties = [
+List<Map<String, dynamic>> properties = [
   {
     "location": "Hiranandani Estate, Thane West",
     "type": "Villa",
@@ -70,7 +70,3 @@ const List<Map<String, dynamic>> properties = [
     "age": 6
   },
 ];
-
-
-
-final List<Map<String,dynamic>> cart = [properties[0], properties[2]];
