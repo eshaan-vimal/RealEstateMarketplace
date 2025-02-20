@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget
         // Accent colors
         colorScheme: ColorScheme.dark(
           primary: Color(0xFF00FF9C), // Neon green
-          secondary: Color(0xFFFF00FF), // Neon pink
+          // secondary: Color(0xFFFF00FF), // Neon pink
+          secondary: Color(0xFF00FF9C),
           tertiary: Color(0xFF00F0FF), // Vibrant cyan
           surface: Color.fromARGB(255, 45, 45, 45),
           error: Color(0xFFFF0033), // Neon red
@@ -82,11 +83,13 @@ class MyApp extends StatelessWidget
         ),
 
         chipTheme: ChipThemeData(
+          // elevation: 1,
           backgroundColor: const Color.fromARGB(255, 15, 15, 15).withAlpha((0.85*255).toInt()),
           labelStyle: TextStyle(
             fontSize: 16,
             color: Color(0xFFE0E0E0),
           ),
+          shadowColor: Color(0xFF00FF9C),
         ),
         
         // Button themes
