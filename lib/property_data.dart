@@ -70,3 +70,7 @@ const List<Map<String, dynamic>> properties = [
     "age": 6
   },
 ];
+
+
+
+final List<Map<String,dynamic>> cart = [properties[0], properties[2]];

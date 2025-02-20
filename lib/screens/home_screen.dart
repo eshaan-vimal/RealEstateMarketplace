@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget
 
 class _HomeScreenState extends State<HomeScreen>
 {
-  final List<Widget> _screens = [PropertyContent(), PortfolioContent()];
+  final List<Widget> screens = [PropertyContent(), PortfolioContent()];
   late int selectedScreen;
 
   @override
@@ -37,7 +37,10 @@ class _HomeScreenState extends State<HomeScreen>
   {
     return Scaffold(
 
-      body: _screens[selectedScreen],
+      body: IndexedStack(
+        index: selectedScreen,
+        children: screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 0,
         selectedFontSize: 0,
