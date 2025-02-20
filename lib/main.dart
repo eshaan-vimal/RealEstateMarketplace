@@ -60,8 +60,8 @@ class MyApp extends StatelessWidget
             fontWeight: FontWeight.bold,
             letterSpacing: 2,
           ),
-          bodyLarge: TextStyle(color: Color(0xFF00FF9C)),
-          bodyMedium: TextStyle(color: Color(0xFF00FF9C)),
+          bodyLarge: TextStyle(color: Color(0xFFE0E0E0)),
+          bodyMedium: TextStyle(color: Color(0xFFE0E0E0)),
         ),
         
         // Input decoration
@@ -82,10 +82,10 @@ class MyApp extends StatelessWidget
         ),
 
         chipTheme: ChipThemeData(
-          backgroundColor: Color.fromARGB(255, 23, 23, 23),
+          backgroundColor: const Color.fromARGB(255, 15, 15, 15).withAlpha((0.85*255).toInt()),
           labelStyle: TextStyle(
             fontSize: 16,
-            color: Color(0xFF00FF9C),
+            color: Color(0xFFE0E0E0),
           ),
         ),
         
@@ -107,7 +107,7 @@ class MyApp extends StatelessWidget
         
         fontFamily: "Lato",
       ),
-      home: PropertyScreen(property: properties[2]),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:product_store/property_data.dart';
 
 import '../widgets/property_card.dart';
+import './property_screen.dart';
 
 
 class HomeScreen extends StatefulWidget
@@ -96,12 +97,14 @@ class _HomeScreenState extends State<HomeScreen>
                       child: Chip(
                         backgroundColor: isSelected? Theme.of(context).colorScheme.primary : null,
                         label: Text(
-                          filters[index]
+                          filters[index],
                         ),
                         labelStyle: isSelected? TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : null,
                         labelPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
+                          // color: Theme.of(context).colorScheme.primary,
+                          color: Colors.black,
+                          width: 0,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -118,12 +121,21 @@ class _HomeScreenState extends State<HomeScreen>
               child: ListView.builder(
                 itemCount: filteredProperties.length,
                 itemBuilder: (context, index) {
-                  return PropertyCard(
-                    image: filteredProperties[index]['image'],
-                    price: filteredProperties[index]['price'], 
-                    location: filteredProperties[index]['location'], 
-                    area: filteredProperties[index]['area'], 
-                    type: filteredProperties[index]['type'],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PropertyScreen(property: filteredProperties[index]),
+                        ),
+                      );
+                    },
+                    child: PropertyCard(
+                      image: filteredProperties[index]['image'],
+                      price: filteredProperties[index]['price'], 
+                      location: filteredProperties[index]['location'], 
+                      area: filteredProperties[index]['area'], 
+                      type: filteredProperties[index]['type'],
+                    ),
                   );
                 }
               ),
