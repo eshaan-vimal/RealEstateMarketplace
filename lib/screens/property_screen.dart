@@ -17,7 +17,8 @@ class PropertyScreen extends StatefulWidget
   State<PropertyScreen> createState() => _PropertyScreenState();
 }
 
-class _PropertyScreenState extends State<PropertyScreen> {
+class _PropertyScreenState extends State<PropertyScreen> 
+{
   late final double screenHeight = MediaQuery.of(context).size.height;
 
   Widget _buildPropertyDetail(String title, String value, IconData icon) 
@@ -26,11 +27,11 @@ class _PropertyScreenState extends State<PropertyScreen> {
       alignment: Alignment.center,
       height: 90,
       width: 150,
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(right: 11),
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(right: 11),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
         // boxShadow: [
         //   BoxShadow(
         //     color: Theme.of(context).primaryColor.withAlpha((0.5*255).toInt()),
@@ -127,14 +128,14 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                           
                         // Area and Type
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor.withAlpha((0.1*255).toInt()),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: const BorderRadius.all(Radius.circular(8)),
                           ),
                           child: Text(
                             "${widget.property['area'].toString()} sq ft   • ${widget.property['type']}",
@@ -144,7 +145,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
                           
                         // Description
                         Text(
@@ -153,7 +154,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           widget.property['description'],
                           style: TextStyle(
@@ -161,7 +162,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             height: 1.5,
                           ),
                         ),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
                           
                         // Property Details Grid
                         Text(
@@ -206,7 +207,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                       ],
                     ),
                   ),
@@ -218,10 +219,10 @@ class _PropertyScreenState extends State<PropertyScreen> {
           // Bottom Price Container
           Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
               border: Border.all(
                 color: Theme.of(context).primaryColor,
                 width: 1,
@@ -233,7 +234,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                   "₹ ${widget.property['price']} Cr",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 SizedBox(
                   width: 170,
                   height: 50,
@@ -242,7 +243,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                       context.read<PropertyProvider>().buyProperty(widget.property);
 
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Color.fromARGB(234, 20, 20, 20),
+                        backgroundColor: const Color.fromARGB(234, 20, 20, 20),
                         content: Center(
                           child: Text(
                             "Purchase Sucessful!",
@@ -257,12 +258,12 @@ class _PropertyScreenState extends State<PropertyScreen> {
                       Navigator.of(context).pop();
                     },
                     style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                       elevation: 0,
                     ),
-                    child: Text(
+                    child: const Text(
                       "Buy Now",
                       style: TextStyle(
                         fontSize: 18,

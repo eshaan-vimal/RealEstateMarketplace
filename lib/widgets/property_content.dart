@@ -64,11 +64,11 @@ class _PropertyContentState extends State<PropertyContent>
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search_rounded),
                       hintText: "Search",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.w200,
                       ),
-                      border: OutlineInputBorder(
+                      border: const OutlineInputBorder(
                         borderRadius: BorderRadius.horizontal(left: Radius.circular(30)),
                       ),
                     ),
@@ -77,7 +77,7 @@ class _PropertyContentState extends State<PropertyContent>
               ),
             ],
           ),
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
       
           SizedBox(
             height: 75,
@@ -101,14 +101,14 @@ class _PropertyContentState extends State<PropertyContent>
                       label: Text(
                         filters[index],
                       ),
-                      labelStyle: isSelected? TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : null,
-                      labelPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      side: BorderSide(
+                      labelStyle: isSelected? const TextStyle(color: Colors.black, fontWeight: FontWeight.bold) : null,
+                      labelPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      side: const BorderSide(
                         // color: Theme.of(context).colorScheme.primary,
                         color: Colors.black,
                         width: 0,
                       ),
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
                     ),
@@ -117,7 +117,7 @@ class _PropertyContentState extends State<PropertyContent>
               },
             ),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
       
           Expanded(
             child: filteredProperties.isEmpty?

@@ -23,7 +23,7 @@ class PropertyCard extends StatelessWidget
   Widget build(BuildContext context) 
   {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(25),
@@ -44,7 +44,7 @@ class PropertyCard extends StatelessWidget
           
           // Property Details
           Padding(
-            padding: EdgeInsets.only(top: 20, bottom: 16, left: 16, right: 16),
+            padding: const EdgeInsets.only(top: 20, bottom: 16, left: 16, right: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,8 +63,8 @@ class PropertyCard extends StatelessWidget
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Location
-                    Icon(Icons.location_on_outlined,size: 20,),
-                    SizedBox(width: 5,),
+                    const Icon(Icons.location_on_outlined,size: 20,),
+                    const SizedBox(width: 5,),
 
                     Expanded(
                       child: Text(
@@ -78,7 +78,7 @@ class PropertyCard extends StatelessWidget
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     // Type
                     Column(
                       children: [
@@ -103,7 +103,7 @@ class PropertyCard extends StatelessWidget
                     ),
                   ],
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
               ],
             ),
           ),

@@ -31,7 +31,7 @@ class _PortfolioContentState extends State<PortfolioContent>
               style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
-          SizedBox(height: 16,),
+          const SizedBox(height: 16,),
 
           Expanded(
             child: portfolio.isEmpty?
@@ -47,7 +47,7 @@ class _PortfolioContentState extends State<PortfolioContent>
               itemCount: portfolio.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  contentPadding: EdgeInsets.all(14.0),
+                  contentPadding: const EdgeInsets.all(14.0),
 
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(
@@ -62,7 +62,7 @@ class _PortfolioContentState extends State<PortfolioContent>
 
                   subtitle: Text(
                     "${portfolio[index]['area']} sq ft.  ${portfolio[index]['type']}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
                     ),
@@ -73,7 +73,7 @@ class _PortfolioContentState extends State<PortfolioContent>
                       context.read<PropertyProvider>().sellProperty(portfolio[index]);
 
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        backgroundColor: Color.fromARGB(234, 20, 20, 20),
+                        backgroundColor: const Color.fromARGB(234, 20, 20, 20),
                         content: Center(
                           child: Text(
                             "Sale Successful!",
@@ -90,7 +90,7 @@ class _PortfolioContentState extends State<PortfolioContent>
                     ),
                     child: Text(
                       "Sell",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
