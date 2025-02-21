@@ -19,7 +19,7 @@ class PropertyScreen extends StatefulWidget
 
 class _PropertyScreenState extends State<PropertyScreen> 
 {
-  late final double screenHeight = MediaQuery.of(context).size.height;
+  late final double screenHeight = MediaQuery.sizeOf(context).height;
 
   Widget _buildPropertyDetail(String title, String value, IconData icon) 
   {
