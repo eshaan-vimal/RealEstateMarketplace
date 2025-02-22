@@ -19,6 +19,7 @@ class _PropertyContentState extends State<PropertyContent>
 {
   late List<Map<String,dynamic>> properties;
   final List<String> filters = ['All', 'Villa', '3BHK', '2BHK', '1BHK'];
+  late String selectedFilter = filters[0];
   late List<Map<String,dynamic>> filteredProperties;
 
 
@@ -39,8 +40,6 @@ class _PropertyContentState extends State<PropertyContent>
   Widget build(BuildContext context) 
   {
     // properties = context.watch<PropertyProvider>().properties;
-    // filteredProperties = context.watch<PropertyProvider>().filteredProperties;
-    // selectedFilter = context.watch<PropertyProvider>().selectedFilter;
 
     return SafeArea(
       child: Column(
@@ -87,14 +86,13 @@ class _PropertyContentState extends State<PropertyContent>
                   clipBehavior: Clip.none,
                   itemCount: filters.length,
                   itemBuilder: (context, index) {
-                    final bool isSelected = propertyProvider.selectedFilter == filters[index];
+                    final bool isSelected = selectedFilter == filters[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            propertyProvider.selectedFilter = filters[index];
-                            context.read<PropertyProvider>().filterProperty();
+                            selectedFilter = filters[index];
                           });
                         },
                         child: Chip(
@@ -124,8 +122,13 @@ class _PropertyContentState extends State<PropertyContent>
       
           Consumer<PropertyProvider>(
             builder: (context, propertyProvider, child) {
+              
+              filteredProperties = selectedFilter == "All" ?
+                propertyProvider.properties : 
+                propertyProvider.properties.where((property) => property['type'] == selectedFilter).toList();
+
               return Expanded(
-                child: propertyProvider.filteredProperties.isEmpty?
+                child: filteredProperties.isEmpty?
                 Center(
                   child: Text(
                     "No listings available.",
@@ -135,24 +138,24 @@ class _PropertyContentState extends State<PropertyContent>
                   ),
                 ) :
                 ListView.builder(
-                  itemCount: propertyProvider.filteredProperties.length,
+                  itemCount: filteredProperties.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => PropertyScreen(property: propertyProvider.filteredProperties[index]),
+                            builder: (context) => PropertyScreen(property: filteredProperties[index]),
                           ),
                         );
                         setState(() {
                         });
                       },
                       child: PropertyCard(
-                        image: propertyProvider.filteredProperties[index]['image'],
-                        price: propertyProvider.filteredProperties[index]['price'], 
-                        location: propertyProvider.filteredProperties[index]['location'], 
-                        area: propertyProvider.filteredProperties[index]['area'], 
-                        type: propertyProvider.filteredProperties[index]['type'],
+                        image: filteredProperties[index]['image'],
+                        price: filteredProperties[index]['price'], 
+                        location: filteredProperties[index]['location'], 
+                        area: filteredProperties[index]['area'], 
+                        type: filteredProperties[index]['type'],
                       ),
                     );
                   }
