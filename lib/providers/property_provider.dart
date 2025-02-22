@@ -5,11 +5,12 @@ import '../property_data.dart' as data;
 class PropertyProvider extends ChangeNotifier
 {
   List<Map<String,dynamic>> properties = data.properties;
+  String selectedFilter = 'All';
   late List<Map<String,dynamic>> filteredProperties = properties;
   final List<Map<String,dynamic>> portfolio = [];
 
 
-  void filterProperty(String selectedFilter)
+  void filterProperty()
   {
     filteredProperties = selectedFilter == "All" ?
       properties : 
@@ -37,7 +38,7 @@ class PropertyProvider extends ChangeNotifier
       portfolio.remove(property);
       properties.add(property);
       
-      if (property['type'] == filteredProperties[0]['type'])
+      if (property['type'] == selectedFilter || property['type'] == 'All')
       {
         filteredProperties.add(property);
       }

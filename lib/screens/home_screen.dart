@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/property_content.dart';
+import './property_content.dart';
 import './portfolio_content.dart';
 
 
