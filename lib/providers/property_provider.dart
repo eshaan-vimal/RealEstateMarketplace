@@ -38,7 +38,7 @@ class PropertyProvider extends ChangeNotifier
       portfolio.remove(property);
       properties.add(property);
       
-      if (property['type'] == selectedFilter || property['type'] == 'All')
+      if (property['type'] == selectedFilter || selectedFilter == 'All')
       {
         filteredProperties.add(property);
       }
