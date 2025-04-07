@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:product_store/models/property_model.dart';
 import '../providers/property_provider.dart';
 
 
@@ -18,7 +19,7 @@ class _PortfolioContentState extends State<PortfolioContent>
   @override
   Widget build(BuildContext context) 
   {
-    final List<Map<String,dynamic>> portfolio = context.watch<PropertyProvider>().portfolio;
+    final List<Property> portfolio = context.watch<PropertyProvider>().portfolio;
 
     return SafeArea(
       child: Column(
@@ -51,17 +52,17 @@ class _PortfolioContentState extends State<PortfolioContent>
 
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(
-                      portfolio[index]['image'],
+                      portfolio[index].image,
                     ),
                     radius: 32,
                   ),
 
                   title: Text(
-                    portfolio[index]['location'],
+                    portfolio[index].location,
                   ),
 
                   subtitle: Text(
-                    "${portfolio[index]['area']} sq ft.  ${portfolio[index]['type']}",
+                    "${portfolio[index].area} sq ft.  ${portfolio[index].type}",
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,

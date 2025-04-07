@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:product_store/property_data.dart';
 
+import 'package:product_store/models/property_model.dart';
 import 'package:product_store/providers/property_provider.dart';
 import '../widgets/property_card.dart';
 import './property_screen.dart';
@@ -17,10 +18,10 @@ class PropertyContent extends StatefulWidget
 
 class _PropertyContentState extends State<PropertyContent> 
 {
-  late List<Map<String,dynamic>> properties;
+  late List<Property> properties;
   final List<String> filters = ['All', 'Villa', '3BHK', '2BHK', '1BHK'];
   late String selectedFilter = filters[0];
-  late List<Map<String,dynamic>> filteredProperties;
+  late List<Property> filteredProperties;
 
 
   @override
@@ -125,7 +126,7 @@ class _PropertyContentState extends State<PropertyContent>
               
               filteredProperties = selectedFilter == "All" ?
                 propertyProvider.properties : 
-                propertyProvider.properties.where((property) => property['type'] == selectedFilter).toList();
+                propertyProvider.properties.where((property) => property.type == selectedFilter).toList();
 
               return Expanded(
                 child: filteredProperties.isEmpty?
@@ -151,11 +152,11 @@ class _PropertyContentState extends State<PropertyContent>
                         });
                       },
                       child: PropertyCard(
-                        image: filteredProperties[index]['image'],
-                        price: filteredProperties[index]['price'], 
-                        location: filteredProperties[index]['location'], 
-                        area: filteredProperties[index]['area'], 
-                        type: filteredProperties[index]['type'],
+                        image: filteredProperties[index].image,
+                        price: filteredProperties[index].price, 
+                        location: filteredProperties[index].location, 
+                        area: filteredProperties[index].area, 
+                        type: filteredProperties[index].type,
                       ),
                     );
                   }

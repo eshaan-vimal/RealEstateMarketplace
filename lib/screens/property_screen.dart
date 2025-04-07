@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:product_store/models/property_model.dart';
 import 'package:product_store/providers/property_provider.dart';
 import 'package:provider/provider.dart';
 
 
 class PropertyScreen extends StatefulWidget 
 {
-  final Map<String, dynamic> property;
+  final Property property;
 
   const PropertyScreen({
     super.key,
@@ -78,7 +79,7 @@ class _PropertyScreenState extends State<PropertyScreen>
   @override
   Widget build(BuildContext context) 
   {
-    final rooms = widget.property['rooms'] as Map<String, int>;
+    final rooms = widget.property.rooms;
     
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -109,7 +110,7 @@ class _PropertyScreenState extends State<PropertyScreen>
 
                   // Property Image
                   Image(
-                    image: AssetImage(widget.property['image']),
+                    image: AssetImage(widget.property.image),
                     height: screenHeight * 0.45,
                     width: double.infinity,
                     fit: BoxFit.cover,
@@ -123,7 +124,7 @@ class _PropertyScreenState extends State<PropertyScreen>
                       children: [
                         // Location
                         Text(
-                          widget.property['location'],
+                          widget.property.location,
                           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -138,7 +139,7 @@ class _PropertyScreenState extends State<PropertyScreen>
                             borderRadius: const BorderRadius.all(Radius.circular(8)),
                           ),
                           child: Text(
-                            "${widget.property['area'].toString()} sq ft   • ${widget.property['type']}",
+                            "${widget.property.area.toString()} sq ft   • ${widget.property.type}",
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
                               fontWeight: FontWeight.w500,
@@ -156,7 +157,7 @@ class _PropertyScreenState extends State<PropertyScreen>
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          widget.property['description'],
+                          widget.property.description,
                           style: TextStyle(
                             color: Colors.grey[400],
                             height: 1.5,
@@ -231,7 +232,7 @@ class _PropertyScreenState extends State<PropertyScreen>
             child: Column(
               children: [
                 Text(
-                  "₹ ${widget.property['price']} Cr",
+                  "₹ ${widget.property.price} Cr",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(height: 16),

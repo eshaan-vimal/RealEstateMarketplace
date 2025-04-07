@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:product_store/providers/property_provider.dart';
-
 import './screens/home_screen.dart';
 
 
